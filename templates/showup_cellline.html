@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Welcome to Cancerfree</title>
+  </head>
+  <body>
+    <a href="/"><img src="../static/small_logo.png" alt="small_logp" class="smalllogo" style="display:inline;"/></a>
+      <ul class="drop-down-menu">
+        <li><a href="#">About Us</a>
+            <ul>
+                <li><a href="\about_whoWeAre">Who We Are</a>
+                </li>
+                <li><a href="\about_whatWeDo">What We Do</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="\products">Products</a>
+          <ul>
+            <li><a href="#">Human Cancer Cell Line</a>
+              <ul>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="CTC">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Blood" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Ascites">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Ascites" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Pleural effusion">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Pleural effusion" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Tissue">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Tissue" class="cc_btn"/>
+                </form>
+            </ul>
+            </li>
+        </ul>
+        <li><a href="\others">Support</a>
+          <ul>
+            <li><a href="#">Q & A</a>
+            </li>
+            <li><a href="#">Contact Us</a>
+            </li>
+            <li><a href="#">Legal Disclaimers​</a>
+            </li>
+          </ul>
+        </li>
+        </li>
+        <li><a href="\links">Links</a>
+        </li>
+    </ul>
+    <div class="login_btn" style="display:inline;"> 
+      <ul>
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+      </ul>
+    </div>
+  <div class="container">
+    <h1>Cell Line</h1>
+    <div class="line-green"></div>
+    <br>
+    {% for cell in showupcellline: %}
+        {% if (myfilter[0] == cell[1] or myfilter[0] == 'All') and 
+              ((myfilter[1][0] == '0' and cell[3] < 30) or
+               (myfilter[1][0] == '3' and (cell[3] >= 30) and (cell[3] < 40)) or
+               (myfilter[1][0] == '4' and (cell[3] >= 40) and (cell[3] < 50)) or
+               (myfilter[1][0] == '5' and (cell[3] >= 50) and (cell[3] < 60)) or
+               (myfilter[1][0] == '6' and (cell[3] >= 60) and (cell[3] < 70)) or
+               (myfilter[1][0] == '7' and (cell[3] >= 70) and (cell[3] < 80)) or
+               (myfilter[1][0] == '8' and cell[3] >= 80) 
+                or myfilter[1] == 'All') and
+              (myfilter[2] == cell[4] or myfilter[2] == 'All') and
+              (myfilter[3] == cell[5] or myfilter[3] == 'All') and
+              (myfilter[4] == cell[8] or myfilter[4] == 'All') and 
+              (myfilter[5] == cell[9] or myfilter[5] == 'All') : %}
+          <div id="BoxText3">
+            <form action="/cellline_submit" method="POST">
+              <!-- <input type="hidden" name="Product_category" value={{cell[1]}}>
+              <input type="hidden" name="Organism" value={{cell[2]}}>
+              <input type="hidden" name="Age" value={{cell[3]}}>
+              <input type="hidden" name="Gender" value={{cell[4]}}>
+              <input type="hidden" name="Ethnicity" value={{cell[5]}}>
+              <input type="hidden" name="Biopsy_site" value={{cell[6]}}>
+              <input type="hidden" name="Tissue" value={{cell[7]}}>
+              <input type="hidden" name="Cancer_type" value={{cell[8]}}>
+              <input type="hidden" name="Growth_properties" value={{cell[9]}}>
+              <input type="hidden" name="Stock" value={{cell[10]}}> -->
+              <input type="submit" name='No' value={{cell[0]}} class="cellline_btn"/>
+            </form>
+
+            <h3>Product Category: </h3><h3 style=color:#777>{{cell[1]}}</h3><br>
+            <!-- <h3>Organism: </h3><h3 style=color:#777>{{cell[2]}}</h3><br>
+            <h3>Age: </h3><h3 style=color:#777>{{cell[3]}}</h3><br>
+            <h3>Gender: </h3><h3 style=color:#777>{{cell[4]}}</h3><br>
+            <h3>Ethnicity: </h3><h3 style=color:#777>{{cell[5]}}</h3><br>
+            <h3>Biopsy site: </h3><h3 style=color:#777>{{cell[6]}}</h3><br> -->
+            <h3>Tissue: </h3><h3 style=color:#777>{{cell[7]}}</h3><br>
+            <!-- <h3>Cancer type: </h3><h3 style=color:#777>{{cell[8]}}</h3><br>
+            <h3>Growth properties: </h3><h3 style=color:#777>{{cell[9]}}</h3><br> -->
+            <img src={{cell[11]}} alt="cellline_pic" class="cellline_pic_preview" style="display:inline;"/>
+          </div>
+          <br>
+        {% endif %}
+    {% endfor %}
+  </body>
+</html>

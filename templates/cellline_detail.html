@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Welcome to Cancerfree</title>
+  </head>
+  <body>
+    <a href="/"><img src="../static/small_logo.png" alt="small_logp" class="smalllogo" style="display:inline;"/></a>
+      <ul class="drop-down-menu">
+        <li><a href="#">About Us</a>
+            <ul>
+                <li><a href="\about_whoWeAre">Who We Are</a>
+                </li>
+                <li><a href="\about_whatWeDo">What We Do</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="\products">Products</a>
+          <ul>
+            <li><a href="#">Human Cancer Cell Line</a>
+              <ul>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="CTC">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Blood" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Ascites">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Ascites" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Pleural effusion">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Pleural effusion" class="cc_btn"/>
+                </form>
+                <form action="/product_submit" method="POST">
+                  <input type="hidden" name="Product Category" value="Tissue">
+                  <input type="hidden" name="Age" value="All">
+                  <input type="hidden" name="Gender" value="All">
+                  <input type="hidden" name="Ethnicity" value="All">
+                  <input type="hidden" name="Cancer type" value="All">
+                  <input type="hidden" name="Growth Properties" value="All">
+                  <input type="submit" name="btn" value= "Tissue" class="cc_btn"/>
+                </form>
+            </ul>
+            </li>
+        </ul>
+        <li><a href="\others">Support</a>
+          <ul>
+            <li><a href="#">Q & A</a>
+            </li>
+            <li><a href="#">Contact Us</a>
+            </li>
+            <li><a href="#">Legal Disclaimers​</a>
+            </li>
+          </ul>
+        </li>
+        </li>
+        <li><a href="\links">Links</a>
+        </li>
+    </ul>
+    <div class="login_btn" style="display:inline;"> 
+      <ul>
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+      </ul>
+    </div>
+  <div class="container">
+    <h1>Cell Line</h1>
+    <div class="line-green"></div>
+    {% for cell in showupcellline: %}
+      {% if cell[0] == mycell : %}
+      <h2>{{cell[0]}}</h2>
+      <img src={{cell[11]}} alt="cellline_pic" class="cellline_pic"/>
+      <div id="BoxText3">
+        <h3>Product Category: </h3><h3 style=color:#777 style="display:inline;">{{cell[1]}}</h3><br>
+        <h3>Organism: </h3><h3 style=color:#777 style="display:inline;">{{cell[2]}}</h3><br>
+        <h3>Age: </h3><h3 style=color:#777 style="display:inline;">{{cell[3]}}</h3><br>
+        <h3>Gender: </h3><h3 style=color:#777>{{cell[4]}}</h3><br>
+        <h3>Ethnicity: </h3><h3 style=color:#777>{{cell[5]}}</h3><br>
+        <h3>Biopsy site: </h3><h3 style=color:#777>{{cell[6]}}</h3><br>
+        <h3>Tissue: </h3><h3 style=color:#777>{{cell[7]}}</h3>
+        <h3>Cancer type: </h3><h3 style=color:#777>{{cell[8]}}</h3><br>
+        <h3>Growth properties: </h3><h3 style=color:#777>{{cell[9]}}</h3>
+      </div>
+      <br>
+      <div id="BoxText3">
+        <h3>Morphology: </h3><h3 style=color:#777>Epithelial</h3><br>
+        <h3>Split ratio: </h3><h3 style=color:#777>1:5</h3><br>
+        <h3>Mycoplasma: </h3><h3 style=color:#777>Negative</h3><br>
+        <h3>Incubation Temperture: </h3><h3 style=color:#777>37 ℃</h3><br>
+        <h3>Incubation condition: </h3><h3 style=color:#777>5% CO<sub>2</sub></h3><br>
+        <h3>Culture medium: </h3><h3 style=color:#777>High glucose DMEN with 4mM L-glutamine and 1.25 sodium pyruvate+ 10% fetal bovine sreum</h3><br>
+        <h3>Subculture procedure: </h3><h3 style=color:#777>Trypsin-EDTA</h3><br>
+        <h3>Freezed medium: </h3><h3 style=color:#777>90% culture medium +10% DMSO</h3><br>
+        <h3>Medium renewal: </h3><h3 style=color:#777>Every 2 to 3 days</h3><br>
+      </div>
+      {% endif %}
+    {% endfor %}
+    <a href="https://testnets.opensea.io/" value="Search" style="text-decoration:none;">
+      <input type="button" value="NFT" class = "nft_btn">
+    </a>
+  </body>
+</html>
